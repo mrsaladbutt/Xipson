@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xipson</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Jost:300,regular,500"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Unbounded:300,regular,500"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="header__nav">
+          <ul class="header__menu">
+            <li>
+              <a class="header__links country" id="country" href="#"
+                >Country
+                <svg class="country-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use>
+                </svg>
+              </a>
+            </li>
+            <li><a class="header__links" href="">Buy</a></li>
+            <li><a class="header__links" href="">Sell</a></li>
+            <li><a class="header__links" href="">Rent</a></li>
+            <li><a class="header__links" href="">Invest</a></li>
+            <li><a class="header__links" href="">Loans</a></li>
+          </ul>
+          <a class="header__logo" href="/"
+            ><img src="./images/logo.svg" alt="main-logo"
+          /></a>
+          <div class="header__right-menus">
+            <ul class="header__right-menus__nav">
+              <li><a class="header__links" href="">Agent Finder</a></li>
+              <li><a class="header__links" href="">Flights</a></li>
+              <li><a class="header__links" href="">News</a></li>
+            </ul>
+            <ul class="header__switchers">
+              <li class="header__lang-switcher">
+                <a class="header__lang-switcher__link" href="">
+                  <svg class="globe-icon" width="20" height="20">
+                    <use href="./images/icons.svg#icon-globe"></use>
+                  </svg>
+                  <span>EN</span>
+                  <svg class="country-arrow" width="9" height="5">
+                    <use href="./images/icons.svg#icon-arrow"></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="header__login">
+                <a class="header__login__link" href="">
+                  <svg class="customer-icon" width="20" height="20">
+                    <use href="./images/icons.svg#icon-customer"></use>
+                  </svg>
+                  <span>Sign in</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <nav class="sub-nav">
+          <ul class="sub-nav__list">
+            <li>
+              <a data-continent="North America" class="sub-nav__links" href="#"
+                >North America
+                <svg class="continent-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use></svg
+              ></a>
+              <div
+                class="sub-nav__continents continents-container"
+                id="continents"
+              ></div>
+            </li>
+            <li>
+              <a data-continent="Europe" class="sub-nav__links" href="#"
+                >Europe
+                <svg class="continent-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use></svg
+              ></a>
+              <div
+                class="sub-nav__continents continents-container"
+                id="continents"
+              ></div>
+            </li>
+            <li>
+              <a data-continent="Asia" class="sub-nav__links" href="#"
+                >Asia
+                <svg class="continent-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use></svg
+              ></a>
+              <div
+                class="sub-nav__continents continents-container"
+                id="continents"
+              ></div>
+            </li>
+            <li>
+              <a data-continent="South America" class="sub-nav__links" href="#"
+                >South America
+                <svg class="continent-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use></svg
+              ></a>
+              <div
+                class="sub-nav__continents continents-container"
+                id="continents"
+              ></div>
+            </li>
+            <li>
+              <a data-continent="Africa" class="sub-nav__links" href="#"
+                >Africa
+                <svg class="continent-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use></svg
+              ></a>
+              <div
+                class="sub-nav__continents continents-container"
+                id="continents"
+              ></div>
+            </li>
+            <li>
+              <a data-continent="Oceania" class="sub-nav__links" href="#"
+                >Oceania
+                <svg class="continent-arrow" width="9" height="5">
+                  <use href="./images/icons.svg#icon-arrow"></use></svg
+              ></a>
+              <div
+                class="sub-nav__continents continents-container"
+                id="continents"
+              ></div>
+            </li>
+          </ul>
+        </nav>
+        <div class="country-page-filters" id="countryFilters">
+          <form>
+            <div class="input-search-wrapper">
+              <input
+                class="input"
+                type="text"
+                id="search-input"
+                placeholder="City, Neighborhood, ZIP, Address"
+              />
+              <svg class="input-search-icon" width="26" height="26">
+                <use href="./images/icons.svg#icon-search"></use>
+              </svg>
+              <div class="input-history">
+                <div class="current-location">
+                  <svg class="current-location-icon" width="18" height="18">
+                    <use href="./images/icons.svg#icon-location"></use>
+                  </svg>
+                  Current location
+                </div>
+                <div class="input-history-entries">
+                  <svg class="icon-clock" width="18" height="18">
+                    <use href="./images/icons.svg#icon-clock"></use>
+                  </svg>
+                  Lorem ipsum dolor sit amet
+                </div>
+                <div class="input-history-entries">
+                  <svg class="icon-clock" width="18" height="18">
+                    <use href="./images/icons.svg#icon-clock"></use>
+                  </svg>
+                  Lorem ipsum dolor sit amet
+                </div>
+              </div>
+            </div>
+            <div class="input-filter-wrapper">
+              <input
+                class="input"
+                type="text"
+                id="handType"
+                placeholder="Hand Type"
+                readonly
+              />
+              <svg class="input-arrow" id="handTypeArrow" width="11" height="7">
+                <use href="./images/icons.svg#icon-arrow"></use>
+              </svg>
+              <div class="hand-type-dropdown">
+                <div class="hand-type-dropdown-title">
+                  <h6>Hand Type:</h6>
+                  <div class="hand-type-dropdown-select-all">
+                    <input
+                      type="checkbox"
+                      id="hand-type-select-all"
+                      name="hand-type-select-all"
+                    />
+                    <span class="hand-type-dropdown-select-all-checkbox"></span>
+                    <label for="hand-type-select-all">Select all</label>
+                  </div>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="foreclosed"
+                    name="foreclosed"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="foreclosed">Foreclosed</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="resale"
+                    name="resale"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="resale">Resale</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="new-construction"
+                    name="new-construction"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="new-construction">New construction</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="coming-soon"
+                    name="coming-soon"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="coming-soon">Coming soon</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="owner-advertising"
+                    name="owner-advertising"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="owner-advertising">Owner Advertising</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="rent"
+                    name="rent"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="rent">Rent</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="investment-projects"
+                    name="investment-projects"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="investment-projects">Investment Projects</label>
+                </div>
+                <div class="hand-type-dropdown-checkbox">
+                  <input
+                    class="hand-type-checkbox"
+                    type="checkbox"
+                    id="sold-out"
+                    name="sold-out"
+                  />
+                  <span class="checkmark"></span>
+                  <label for="sold-out">Sold out</label>
+                </div>
+                <button type="button">Apply</button>
+              </div>
+            </div>
+            <div class="input-filter-wrapper">
+              <input
+                class="input"
+                id="price"
+                type="text"
+                placeholder="Price"
+                readonly
+              />
+              <svg class="input-arrow" id="priceArrow" width="11" height="7">
+                <use href="./images/icons.svg#icon-arrow"></use>
+              </svg>
+              <div class="price-dropdown">
+                <div class="price-heading">
+                  <h6>Price Range:</h6>
+                </div>
+                <div class="min-max">
+                  <div class="min-price">
+                    <label for="min">Minimum</label>
+                    <input
+                      type="text"
+                      id="min"
+                      name="min"
+                      value="No Min"
+                      readonly
+                    />
+                    <svg class="min-arrow" width="11" height="7">
+                      <use href="./images/icons.svg#icon-arrow"></use>
+                    </svg>
+                    <div class="min-prices">
+                      <ul>
+                        <li data-price="$0">$0</li>
+                        <li data-price="$50,000">$50,000</li>
+                        <li data-price="$100,000">$100,000</li>
+                        <li data-price="$150,000">$150,000</li>
+                        <li data-price="$200,000">$200,000</li>
+                        <li data-price="$250,000">$250,000</li>
+                        <li data-price="$300,000">$300,000</li>
+                        <li data-price="$350.000">$350.000</li>
+                        <li data-price="$400,000">$400,000</li>
+                        <li data-price="$500,000">$500,000</li>
+                        <li data-price="$1M">$1M</li>
+                        <li data-price="$1,5M">$1,5M</li>
+                        <li data-price="$2M">$2M</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <span>-</span>
+                  <div class="max-price">
+                    <label for="max">Maximum</label>
+                    <input
+                      type="text"
+                      id="max"
+                      name="max"
+                      value="No Max"
+                      readonly
+                    />
+                    <svg class="max-arrow" width="11" height="7">
+                      <use href="./images/icons.svg#icon-arrow"></use>
+                    </svg>
+                    <div class="max-prices">
+                      <ul>
+                        <li data-price="$0">$0</li>
+                        <li data-price="$50,000">$50,000</li>
+                        <li data-price="$100,000">$100,000</li>
+                        <li data-price="$150,000">$150,000</li>
+                        <li data-price="$200,000">$200,000</li>
+                        <li data-price="$250,000">$250,000</li>
+                        <li data-price="$300,000">$300,000</li>
+                        <li data-price="$350.000">$350.000</li>
+                        <li data-price="$400,000">$400,000</li>
+                        <li data-price="$500,000">$500,000</li>
+                        <li data-price="$1M">$1M</li>
+                        <li data-price="$1,5M">$1,5M</li>
+                        <li data-price="$2M">$2M</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="currency">
+                  <h6>Currency:</h6>
+                </div>
+                <div class="currency-switcher">
+                  <div class="list-currency">
+                    <label for="list-currency">List Currency</label>
+                    <img
+                      src="./images/united-states-flag-icon.svg"
+                      alt="usa-currency"
+                    />
+                    <input
+                      type="text"
+                      id="list-currency"
+                      name="list-currency"
+                      placeholder="US Dollar"
+                      readonly
+                    />
+                  </div>
+                  <span>-</span>
+                  <div class="choose-currency">
+                    <label for="choose-currency">List Currency</label>
+                    <img
+                      src="./images/ukraine-flag-icon.svg"
+                      alt="ukr-currency"
+                    />
+                    <input
+                      type="text"
+                      id="choose-currency"
+                      name="choose-currency"
+                      placeholder="UA Hrivnia"
+                      readonly
+                    />
+                    <svg class="hrivnia-arrow" width="11" height="7">
+                      <use href="./images/icons.svg#icon-arrow"></use>
+                    </svg>
+                  </div>
+                </div>
+                <button type="button">Apply</button>
+              </div>
+            </div>
+            <div class="input-filter-wrapper">
+              <input
+                class="input"
+                id="bedsAndBath"
+                type="text"
+                placeholder="Beds&Bath"
+                readonly
+              />
+              <svg
+                class="input-arrow"
+                id="bedsAndBathArrow"
+                width="11"
+                height="7"
+              >
+                <use href="./images/icons.svg#icon-arrow"></use>
+              </svg>
+              <div class="beds-bath-dropdown">
+                <div class="number-of-bedrooms">
+                  <h6>Number of Bedrooms</h6>
+                </div>
+                <div class="bedrooms">
+                  <h6>Bedrooms</h6>
+                  <ul class="bedrooms-list">
+                    <li class="bedrooms-items">Any</li>
+                    <li class="bedrooms-items">1<span>+</span></li>
+                    <li class="bedrooms-items">2<span>+</span></li>
+                    <li class="bedrooms-items">3<span>+</span></li>
+                    <li class="bedrooms-items">4<span>+</span></li>
+                    <li class="bedrooms-items">5<span>+</span></li>
+                  </ul>
+                  <div class="exact-match">
+                    <input
+                      type="checkbox"
+                      id="match-checkbox"
+                      name="match-checkbox"
+                    />
+                    <label for="match-checkbox">Use Exact Match</label>
+                  </div>
+                </div>
+                <div class="number-of-bathrooms">
+                  <h6>Number of Bathrooms</h6>
+                </div>
+                <div class="bathrooms">
+                  <h6>Bathrooms</h6>
+                  <ul class="bathrooms-list">
+                    <li class="bathrooms-items">Any</li>
+                    <li class="bathrooms-items">1<span>+</span></li>
+                    <li class="bathrooms-items">2<span>+</span></li>
+                    <li class="bathrooms-items">3<span>+</span></li>
+                    <li class="bathrooms-items">4<span>+</span></li>
+                    <li class="bathrooms-items">5<span>+</span></li>
+                  </ul>
+                </div>
+                <button type="button">Apply</button>
+              </div>
+            </div>
+            <div class="input-filter-wrapper">
+              <input
+                class="input"
+                id="homeType"
+                type="text"
+                placeholder="Home type"
+                readonly
+              />
+              <svg class="input-arrow" id="homeTypeArrow" width="11" height="7">
+                <use href="./images/icons.svg#icon-arrow"></use>
+              </svg>
+              <div class="home-type-dropdown">
+                <div class="home-type">
+                  <h6>Home Type</h6>
+                  <div class="select-all">
+                    <input type="checkbox" id="select-all" name="select-all" />
+                    <span class="select-all-checkbox"></span>
+                    <label for="select-all">Select all</label>
+                  </div>
+                </div>
+                <div class="retail">
+                  <div class="retail-title">
+                    <h6>Retail:</h6>
+                  </div>
+                  <div class="retail-checkbox">
+                    <input
+                      type="checkbox"
+                      id="houses"
+                      name="houses"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="houses">Houses</label>
+                  </div>
+                  <div class="retail-checkbox">
+                    <input
+                      type="checkbox"
+                      id="townhomes"
+                      name="townhomes"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="townhomes">Townhomes</label>
+                  </div>
+                  <div class="retail-checkbox">
+                    <input
+                      type="checkbox"
+                      id="multi-family"
+                      name="multi-family"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="multi-family">Multi-family</label>
+                  </div>
+                  <div class="retail-checkbox">
+                    <input
+                      type="checkbox"
+                      id="condos"
+                      name="condos"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="condos">Condos/Co-ops</label>
+                  </div>
+                  <div class="retail-checkbox">
+                    <input
+                      type="checkbox"
+                      id="apartments"
+                      name="apartments"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="apartments">Apartments</label>
+                  </div>
+                  <div class="retail-checkbox">
+                    <input
+                      type="checkbox"
+                      id="villa"
+                      name="villa"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="villa">Villa</label>
+                  </div>
+                </div>
+                <div class="commercial">
+                  <div class="commercial-title">
+                    <h6>Commecial</h6>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="data-center"
+                      name="data-center"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="data-center">Data Center</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="fiber-asset"
+                      name="fiber-asset"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="fiber-asset">Fiber Asset</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="flex"
+                      name="flex"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="flex">Flex</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="hospitality"
+                      name="dhospitality"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="hospitality">Hospitality</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="industrial"
+                      name="industrial"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="industrial">Industrial</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="land"
+                      name="land"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="land">land</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="life-sciences"
+                      name="life-sciences"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="life-sciences">life Sciences</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="medical"
+                      name="medical"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="medical">Medical</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="office"
+                      name="office"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="office">Office</label>
+                  </div>
+                  <div class="commercial-checkbox">
+                    <input
+                      type="checkbox"
+                      id="speciality"
+                      name="speciality"
+                      class="retail-checkbox-checkbox"
+                    />
+                    <label for="speciality">Speciality</label>
+                  </div>
+                </div>
+                <button type="button">Apply</button>
+              </div>
+            </div>
+            <div class="input-filter-wrapper">
+              <input
+                class="input"
+                id="more"
+                type="text"
+                placeholder="More"
+                readonly
+              />
+              <svg class="input-arrow" id="moreArrow" width="11" height="7">
+                <use href="./images/icons.svg#icon-arrow"></use>
+              </svg>
+              <div class="more">
+                <div class="more-title">
+                  <h6>More Filters</h6>
+                </div>
+                <div class="parking-spots">
+                  <h6>Parking Spots</h6>
+                  <div class="parking-spots-select">
+                    <input
+                      type="text"
+                      readonly
+                      id="parking-spots-select"
+                      name="parking-spots-select"
+                      value="Any"
+                    />
+                    <svg
+                      class="parking-spots-select-arrow"
+                      width="11"
+                      height="7"
+                    >
+                      <use href="./images/icons.svg#icon-arrow"></use>
+                    </svg>
+                    <div class="parking-spots-dropdown">
+                      <ul>
+                        <li data-spot="Any">Any</li>
+                        <li data-spot="1+">1+</li>
+                        <li data-spot="2+">2+</li>
+                        <li data-spot="3+">3+</li>
+                        <li data-spot="4+">4+</li>
+                        <li data-spot="5+">5+</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="parking-spots-checkbox">
+                    <input
+                      type="checkbox"
+                      id="parking-spots-checkbox"
+                      name="parking-spots-checkbox"
+                    />
+                    <label for="parking-spots-checkbox">Must have garage</label>
+                  </div>
+                </div>
+                <div class="unit-of-measurement">
+                  <h6>Unit of Measurement</h6>
+                  <div class="unit-of-measurement-select">
+                    <input
+                      type="text"
+                      readonly
+                      id="unit-of-measurement-select"
+                      name="unit-of-measurement-select"
+                      value="English System"
+                    />
+                    <svg
+                      class="unit-of-measurement-select-arrow"
+                      width="11"
+                      height="7"
+                    >
+                      <use href="./images/icons.svg#icon-arrow"></use>
+                    </svg>
+                    <div class="unit-of-measurement-dropdown">
+                      <ul>
+                        <li data-system="English System">English System</li>
+                        <li data-system="European System">European System</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="square-size">
+                  <h6>Square Size</h6>
+                  <div class="square-size-min-max">
+                    <div class="square-size-min">
+                      <input
+                        type="text"
+                        readonly
+                        id="square-size-min"
+                        name="square-size-min"
+                        value="No Min"
+                      />
+                      <svg class="square-size-min-arrow" width="11" height="7">
+                        <use href="./images/icons.svg#icon-arrow"></use>
+                      </svg>
+                      <div class="square-size-min-dropdown">
+                        <ul>
+                          <li data-size="No Min">No Min</li>
+                          <li data-size="500">500</li>
+                          <li data-size="750">750</li>
+                          <li data-size="1,000">1,000</li>
+                          <li data-size="1,250">1,250</li>
+                          <li data-size="1,500">1,500</li>
+                          <li data-size="1,750">1,750</li>
+                          <li data-size="2,000">2,000</li>
+                          <li data-size="2,250">2,250</li>
+                          <li data-size="2,500">2,500</li>
+                          <li data-size="2,750">2,750</li>
+                          <li data-size="3,000">3,000</li>
+                          <li data-size="3,500">3,500</li>
+                          <li data-size="4,000">4,000</li>
+                          <li data-size="4,500">4,500</li>
+                          <li data-size="5,000">5,000</li>
+                          <li data-size="5,500">5,500</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <span>-</span>
+                    <div class="square-size-max">
+                      <input
+                        type="text"
+                        readonly
+                        id="square-size-max"
+                        name="square-size-max"
+                        value="No Max"
+                      />
+                      <svg class="square-size-max-arrow" width="11" height="7">
+                        <use href="./images/icons.svg#icon-arrow"></use>
+                      </svg>
+                      <div class="square-size-max-dropdown">
+                        <ul>
+                          <li data-size="No Min">No Min</li>
+                          <li data-size="500">500</li>
+                          <li data-size="750">750</li>
+                          <li data-size="1,000">1,000</li>
+                          <li data-size="1,250">1,250</li>
+                          <li data-size="1,500">1,500</li>
+                          <li data-size="1,750">1,750</li>
+                          <li data-size="2,000">2,000</li>
+                          <li data-size="2,250">2,250</li>
+                          <li data-size="2,500">2,500</li>
+                          <li data-size="2,750">2,750</li>
+                          <li data-size="3,000">3,000</li>
+                          <li data-size="3,500">3,500</li>
+                          <li data-size="4,000">4,000</li>
+                          <li data-size="4,500">4,500</li>
+                          <li data-size="5,000">5,000</li>
+                          <li data-size="5,500">5,500</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lot-size">
+                  <h6>Lot Size</h6>
+                  <div class="lot-size-min-max">
+                    <div class="lot-size-min">
+                      <input
+                        type="text"
+                        readonly
+                        id="lot-size-min"
+                        name="lot-size-min"
+                        value="No Min"
+                      />
+                      <svg class="lot-size-min-arrow" width="11" height="7">
+                        <use href="./images/icons.svg#icon-arrow"></use>
+                      </svg>
+                      <div class="lot-size-min-dropdown">
+                        <ul id="english-system-min">
+                          <li data-lot="No Min">No Min</li>
+                          <li data-lot="1,000 sqft">1,000 sqft</li>
+                          <li data-lot="2,000 sqft">2,000 sqft</li>
+                          <li data-lot="3,000 sqft">3,000 sqft</li>
+                          <li data-lot="4,000 sqft">4,000 sqft</li>
+                          <li data-lot="5,000 sqft">5,000 sqft</li>
+                          <li data-lot="7,500 sqft">7,500 sqft</li>
+                          <li data-lot="1/4 acre/10,890 sqft">
+                            1/4 acre/10,890 sqft
+                          </li>
+                          <li data-lot="1/2 acre">1/2 acre</li>
+                          <li data-lot="1 acre">1 acre</li>
+                          <li data-lot="2 acres">2 acres</li>
+                          <li data-lot="5 acres">5 acres</li>
+                          <li data-lot="10 acres">10 acres</li>
+                          <li data-lot="20 acres">20 acres</li>
+                          <li data-lot="50 acres">50 acres</li>
+                          <li data-lot="100 acres">100 acres</li>
+                        </ul>
+                        <ul id="european-system-min">
+                          <li data-lot="No Min">No Min</li>
+                          <li data-lot="100 sqm">100 sqm</li>
+                          <li data-lot="200 sqm">200 sqm</li>
+                          <li data-lot="300 sqm">300 sqm</li>
+                          <li data-lot="400 sqm">400 sqm</li>
+                          <li data-lot="500 sqm">500 sqm</li>
+                          <li data-lot="750 sqm">750 sqm</li>
+                          <li data-lot="0,1 hectare">0,1 hectare</li>
+                          <li data-lot="0,2 hectare">0,2 hectare</li>
+                          <li data-lot="0,5 hectare">0,5 hectare</li>
+                          <li data-lot="1 hectare">1 hectare</li>
+                          <li data-lot="2 hectare">2 hectare</li>
+                          <li data-lot="5 hectare">5 hectare</li>
+                          <li data-lot="10 hectare">10 hectare</li>
+                          <li data-lot="20 hectare">20 hectare</li>
+                          <li data-lot="50 hectare">50 hectare</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <span>-</span>
+                    <div class="lot-size-max">
+                      <input
+                        type="text"
+                        readonly
+                        id="lot-size-max"
+                        name="lot-size-max"
+                        value="No Max"
+                      />
+                      <svg class="lot-size-max-arrow" width="11" height="7">
+                        <use href="./images/icons.svg#icon-arrow"></use>
+                      </svg>
+                      <div class="lot-size-max-dropdown">
+                        <ul id="english-system-max">
+                          <li data-lot="No Min">No Min</li>
+                          <li data-lot="1,000 sqft">1,000 sqft</li>
+                          <li data-lot="2,000 sqft">2,000 sqft</li>
+                          <li data-lot="3,000 sqft">3,000 sqft</li>
+                          <li data-lot="4,000 sqft">4,000 sqft</li>
+                          <li data-lot="5,000 sqft">5,000 sqft</li>
+                          <li data-lot="7,500 sqft">7,500 sqft</li>
+                          <li data-lot="1/4 acre/10,890 sqft">
+                            1/4 acre/10,890 sqft
+                          </li>
+                          <li data-lot="1/2 acre">1/2 acre</li>
+                          <li data-lot="1 acre">1 acre</li>
+                          <li data-lot="2 acres">2 acres</li>
+                          <li data-lot="5 acres">5 acres</li>
+                          <li data-lot="10 acres">10 acres</li>
+                          <li data-lot="20 acres">20 acres</li>
+                          <li data-lot="50 acres">50 acres</li>
+                          <li data-lot="100 acres">100 acres</li>
+                        </ul>
+                        <ul id="european-system-max">
+                          <li data-lot="No Min">No Min</li>
+                          <li data-lot="100 sqm">100 sqm</li>
+                          <li data-lot="200 sqm">200 sqm</li>
+                          <li data-lot="300 sqm">300 sqm</li>
+                          <li data-lot="400 sqm">400 sqm</li>
+                          <li data-lot="500 sqm">500 sqm</li>
+                          <li data-lot="750 sqm">750 sqm</li>
+                          <li data-lot="0,1 hectare">0,1 hectare</li>
+                          <li data-lot="0,2 hectare">0,2 hectare</li>
+                          <li data-lot="0,5 hectare">0,5 hectare</li>
+                          <li data-lot="1 hectare">1 hectare</li>
+                          <li data-lot="2 hectare">2 hectare</li>
+                          <li data-lot="5 hectare">5 hectare</li>
+                          <li data-lot="10 hectare">10 hectare</li>
+                          <li data-lot="20 hectare">20 hectare</li>
+                          <li data-lot="50 hectare">50 hectare</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="year-built">
+                  <h6>Year Built</h6>
+                  <div class="year-built-min-max">
+                    <div class="year-built-min">
+                      <input
+                        type="text"
+                        readonly
+                        id="year-built-min"
+                        name="year-built-min"
+                        value="No Min"
+                      />
+                      <svg class="year-built-min-arrow" width="11" height="7">
+                        <use href="./images/icons.svg#icon-arrow"></use>
+                      </svg>
+                      <div class="year-built-min-dropdown"></div>
+                    </div>
+                    <span>-</span>
+                    <div class="year-built-max">
+                      <input
+                        type="text"
+                        readonly
+                        id="year-built-max"
+                        name="year-built-max"
+                        value="No Max"
+                      />
+                      <svg class="year-built-max-arrow" width="11" height="7">
+                        <use href="./images/icons.svg#icon-arrow"></use>
+                      </svg>
+                      <div class="year-built-max-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="basement">
+                  <h6>Basement</h6>
+                  <div class="basement-checkbox">
+                    <input
+                      type="checkbox"
+                      id="basement-checkbox"
+                      name="basement-checkbox"
+                    />
+                    <label for="basement-checkbox">Has basement</label>
+                    <div class="basement-dropdown"></div>
+                  </div>
+                </div>
+                <div class="other">
+                  <h6>Other Amenities</h6>
+                  <div class="other-container">
+                    <ul class="other-list">
+                      <li class="other-items">
+                        <input type="checkbox" id="ac" name="ac" />
+                        <label for="ac">Must have A/C</label>
+                      </li>
+                      <li class="other-items">
+                        <input type="checkbox" id="pool" name="pool" />
+                        <label for="pool">Must have pool</label>
+                      </li>
+                      <li class="other-items">
+                        <input
+                          type="checkbox"
+                          id="waterfront"
+                          name="waterfront"
+                        />
+                        <label for="waterfront">Waterfront</label>
+                      </li>
+                    </ul>
+                    <ul class="other-list">
+                      <li class="other-items">
+                        <input type="checkbox" id="balcony" name="balcony" />
+                        <label for="balcony">Must have balcony</label>
+                      </li>
+                      <li class="other-items">
+                        <input
+                          type="checkbox"
+                          id="furniture"
+                          name="furniture"
+                        />
+                        <label for="furniture">Must have furniture</label>
+                      </li>
+                      <li class="other-items">
+                        <input type="checkbox" id="elevator" name="elevator" />
+                        <label for="elevator">Must have elevator</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="view">
+                  <h6>View</h6>
+                  <div class="view-checkbox">
+                    <input type="checkbox" name="city" id="city" />
+                    <label for="city">City</label>
+                  </div>
+                  <div class="view-checkbox">
+                    <input type="checkbox" name="mountain" id="mountain" />
+                    <label for="mountain">Mountain</label>
+                  </div>
+                  <div class="view-checkbox">
+                    <input type="checkbox" name="park" id="park" />
+                    <label for="park">Park</label>
+                  </div>
+                  <div class="view-checkbox">
+                    <input type="checkbox" name="water" id="water" />
+                    <label for="water">Water</label>
+                  </div>
+                </div>
+                <button type="button">Apply</button>
+              </div>
+            </div>
+            <button class="input-filter-button" type="submit">
+              Reset filters
+            </button>
+          </form>
+          <div class="switch-wiew-buttons">
+            <button class="switch-wiew-button-slider" id="sliderViewButton">
+              <svg class="icon-file-text" width="24" height="24">
+                <use href="./images/icons.svg#icon-file-text"></use>
+              </svg>
+            </button>
+            <button class="switch-wiew-button-map" id="mapViewButton">
+              <svg class="icon-map2" width="24" height="24">
+                <use href="./images/icons.svg#icon-map2"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+      <main class="main" id="main-content">
+        <section class="hero-section">
+          <div class="container">
+            <div class="hero-section__container">
+              <h1 class="hero-section__title">Dream.Find.Invest.</h1>
+              <div class="hero-section__search">
+                <form class="search-form">
+                  <label class="search-form__label visually-hidden" for="search"
+                    >Country Search</label
+                  >
+                  <input
+                    class="search-form__input"
+                    type="text"
+                    placeholder="Enter an country, city, or ZIP"
+                    name="search"
+                    id="search"
+                  />
+                  <button class="search-form__button">
+                    <svg class="search-icon" width="26" height="26">
+                      <use href="./images/icons.svg#icon-search"></use>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="properties-section section">
+          <div class="container">
+            <div class="properties">
+              <div class="properties__title titles">
+                <h2 class="properties__main-title main-titles">Properties.</h2>
+                <h3 class="properties__sub-title sub-titles">
+                  Find your dream home from our added properties.
+                </h3>
+              </div>
+              <div class="properties__switcher">
+                <ul class="properties__tabs" id="propertiesTabs">
+                  <li>
+                    <a
+                      class="properties__tabs-buttons tabs-buttons"
+                      data-container-id="propertiesTabs"
+                      href="#"
+                      >Buy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="properties__tabs-buttons tabs-buttons"
+                      data-container-id="propertiesTabs"
+                      href="#"
+                      >Sell</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="properties__tabs-buttons tabs-buttons"
+                      data-container-id="propertiesTabs"
+                      href="#"
+                      >Rent</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="properties__tabs-buttons tabs-buttons"
+                      data-container-id="propertiesTabs"
+                      href="#"
+                      >Invest</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="properties__slider">
+                <button class="properties__slider__button prev">
+                  <svg class="slider-arrow" width="50" height="28">
+                    <use href="./images/icons.svg#icon-arrow"></use>
+                  </svg>
+                </button>
+                <div class="properties__slider__container swiper-container">
+                  <ul class="properties__slider__list swiper-wrapper">
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="properties__slider__items swiper-slide">
+                      <article class="properties__slider__article">
+                        <div
+                          class="properties__slider__article__image-wrapper image-wrapper"
+                        >
+                          <img
+                            class="image-wrapper__image"
+                            src="./images/article-image.jpg"
+                            alt="house-image"
+                          />
+                          <button class="image-wrapper__button">
+                            <svg class="hotjar-icon" width="16" height="16">
+                              <use
+                                href="./images/icons.svg#icon-hotjar"
+                              ></use></svg
+                            ><span>Featured</span>
+                          </button>
+                          <button
+                            class="image-wrapper__button image-wrapper__button--heart"
+                          >
+                            <svg class="heart-icon" width="22" height="22">
+                              <use href="./images/icons.svg#icon-heart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="properties__slider__content-wrapper">
+                          <div
+                            class="properties__slider__article__author author"
+                          >
+                            <div class="author__avatar">
+                              <img src="./images/avatar.png" alt="" avatar />
+                              <p>Karl Smith</p>
+                            </div>
+                            <div class="author__posted">
+                              <svg class="schedule-icon" width="17" height="17">
+                                <use
+                                  href="./images/icons.svg#icon-schedule"
+                                ></use>
+                              </svg>
+                              <p>2 month ago</p>
+                            </div>
+                          </div>
+                          <div
+                            class="properties__slider__article__location location"
+                          >
+                            <p class="location__name">
+                              Real house luxury villa
+                            </p>
+                            <div class="location__location">
+                              <svg class="location_icon" width="23" height="23">
+                                <use
+                                  href="./images/icons.svg#icon-location"
+                                ></use>
+                              </svg>
+                              <p class="location__location__text">
+                                Est St, 77 - Central Park South, NYC
+                              </p>
+                            </div>
+                          </div>
+                          <div class="properties__slider__article__props props">
+                            <ul class="props__list">
+                              <li>6 Bedrooms</li>
+                              <li>3 Bathrooms</li>
+                              <li>720 sq ft</li>
+                              <li>2 Garages</li>
+                            </ul>
+                          </div>
+                          <div class="properties__slider__article__price price">
+                            <p class="price__price">$1,200,000</p>
+                            <button class="price__button">Details</button>
+                          </div>
+                        </div>
+                      </article>
+                    </li>
+                  </ul>
+                </div>
+                <button class="properties__slider__button next">
+                  <svg class="slider-arrow" width="50" height="28">
+                    <use href="./images/icons.svg#icon-arrow"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="articles__slider">
+              <button class="articles__slider__button articles-prev">
+                <svg class="slider-arrow" width="50" height="28">
+                  <use href="./images/icons.svg#icon-arrow"></use>
+                </svg>
+              </button>
+              <div class="articles__slider-container swiper-articles-container">
+                <ul class="articles__slider__list swiper-wrapper">
+                  <li class="articles__slider__items swiper-slide">
+                    <article class="articles">
+                      <img
+                        src="./images/articles-image-top.jpg"
+                        alt="mountain-house"
+                      />
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Winter wonderland: America’s best ski towns for
+                          homebuyers and sellers
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                    <article class="articles">
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <img
+                        src="./images/articles-image-bottom.jpg"
+                        alt="mountain-house"
+                      />
+                    </article>
+                  </li>
+                  <li class="articles__slider__items swiper-slide">
+                    <article class="articles">
+                      <img
+                        src="./images/articles-image-top.jpg"
+                        alt="mountain-house"
+                      />
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Winter wonderland: America’s best ski towns for
+                          homebuyers and sellers
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                    <article class="articles">
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <img
+                        src="./images/articles-image-bottom.jpg"
+                        alt="mountain-house"
+                      />
+                    </article>
+                  </li>
+                  <li class="articles__slider__items swiper-slide">
+                    <article class="articles">
+                      <img
+                        src="./images/articles-image-top.jpg"
+                        alt="mountain-house"
+                      />
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Winter wonderland: America’s best ski towns for
+                          homebuyers and sellers
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                    <article class="articles">
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <img
+                        src="./images/articles-image-bottom.jpg"
+                        alt="mountain-house"
+                      />
+                    </article>
+                  </li>
+                  <li class="articles__slider__items swiper-slide">
+                    <article class="articles">
+                      <img
+                        src="./images/articles-image-top.jpg"
+                        alt="mountain-house"
+                      />
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Winter wonderland: America’s best ski towns for
+                          homebuyers and sellers
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                    <article class="articles">
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <img
+                        src="./images/articles-image-bottom.jpg"
+                        alt="mountain-house"
+                      />
+                    </article>
+                  </li>
+                  <li class="articles__slider__items swiper-slide">
+                    <article class="articles">
+                      <img
+                        src="./images/articles-image-top.jpg"
+                        alt="mountain-house"
+                      />
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Winter wonderland: America’s best ski towns for
+                          homebuyers and sellers
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                    <article class="articles">
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <img
+                        src="./images/articles-image-bottom.jpg"
+                        alt="mountain-house"
+                      />
+                    </article>
+                  </li>
+                  <li class="articles__slider__items swiper-slide">
+                    <article class="articles">
+                      <img
+                        src="./images/articles-image-top.jpg"
+                        alt="mountain-house"
+                      />
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Winter wonderland: America’s best ski towns for
+                          homebuyers and sellers
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                    <article class="articles">
+                      <div class="articles__content">
+                        <div class="articles__content__posted-date">
+                          <svg class="schedule-icon" width="17" height="17">
+                            <use href="./images/icons.svg#icon-schedule"></use>
+                          </svg>
+                          <p class="articles__content__date">10.01.2024</p>
+                        </div>
+                        <h2 class="articles__content__title">
+                          Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="articles__content__description">
+                          Lorem ipsum dolor sit amet consectetur. Tortor et
+                          dictumst venenatis tincidunt. Adipiscing risus aenean
+                          arcu sagittis et. Odio pharetra nibh faucibus in diam
+                        </p>
+                        <button class="articles__content__button">
+                          <span>Read more</span>
+                          <svg class="arrow-icon" width="11" height="7">
+                            <use href="./images/icons.svg#icon-arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <img
+                        src="./images/articles-image-bottom.jpg"
+                        alt="mountain-house"
+                      />
+                    </article>
+                  </li>
+                </ul>
+              </div>
+              <button class="articles__slider__button articles-next">
+                <svg class="slider-arrow" width="50" height="28">
+                  <use href="./images/icons.svg#icon-arrow"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="opportunities-section section">
+          <div class="container">
+            <div class="opportunities-section__title titles">
+              <h2 class="opportunities-section__main-title main-titles">
+                opportunities.
+              </h2>
+              <h3 class="opportunities-section__sub-title sub-titles">
+                Lorem ipsum dolor sit amet consectetur. Tortor et dictumst
+                venenatis tincidunt
+              </h3>
+            </div>
+            <ul class="opportunities-section__list">
+              <li class="opportunities-section__items">
+                <article class="opportunities-section__article">
+                  <svg
+                    class="opportunities-section__icons"
+                    width="100"
+                    height="100"
+                  >
+                    <use href="./images/icons.svg#icon-home"></use>
+                  </svg>
+                  <div class="opportunities-section__article__text">
+                    <h3 class="opportunities-section__desc-title">
+                      find your home.
+                    </h3>
+                    <p class="opportunities-section__descriprion">
+                      Lorem ipsum dolor sit amet consectetur. Tortor et dictumst
+                      venenatis tincidunt. Adipiscing risus aenean arcu sagittis
+                      et.
+                    </p>
+                  </div>
+                  <button class="opportunities-section__button">
+                    Browse homes
+                  </button>
+                </article>
+              </li>
+              <li class="opportunities-section__items">
+                <article class="opportunities-section__article">
+                  <svg
+                    class="opportunities-section__icons"
+                    width="100"
+                    height="100"
+                  >
+                    <use href="./images/icons.svg#icon-deal"></use>
+                  </svg>
+                  <div class="opportunities-section__article__text">
+                    <h3 class="opportunities-section__desc-title">
+                      find your home.
+                    </h3>
+                    <p class="opportunities-section__descriprion">
+                      Lorem ipsum dolor sit amet consectetur. Tortor et dictumst
+                      venenatis tincidunt. Adipiscing risus aenean arcu sagittis
+                      et.
+                    </p>
+                  </div>
+                  <button class="opportunities-section__button">
+                    Browse homes
+                  </button>
+                </article>
+              </li>
+              <li class="opportunities-section__items">
+                <article class="opportunities-section__article">
+                  <svg
+                    class="opportunities-section__icons"
+                    width="100"
+                    height="100"
+                  >
+                    <use href="./images/icons.svg#icon-cash"></use>
+                  </svg>
+                  <div class="opportunities-section__article__text">
+                    <h3 class="opportunities-section__desc-title">
+                      find your home.
+                    </h3>
+                    <p class="opportunities-section__descriprion">
+                      Lorem ipsum dolor sit amet consectetur. Tortor et dictumst
+                      venenatis tincidunt. Adipiscing risus aenean arcu sagittis
+                      et.
+                    </p>
+                  </div>
+                  <button class="opportunities-section__button">
+                    Browse homes
+                  </button>
+                </article>
+              </li>
+              <li class="opportunities-section__items">
+                <article class="opportunities-section__article">
+                  <svg
+                    class="opportunities-section__icons"
+                    width="100"
+                    height="100"
+                  >
+                    <use href="./images/icons.svg#icon-earth"></use>
+                  </svg>
+                  <div class="opportunities-section__article__text">
+                    <h3 class="opportunities-section__desc-title">
+                      find your home.
+                    </h3>
+                    <p class="opportunities-section__descriprion">
+                      Lorem ipsum dolor sit amet consectetur. Tortor et dictumst
+                      venenatis tincidunt. Adipiscing risus aenean arcu sagittis
+                      et.
+                    </p>
+                  </div>
+                  <button class="opportunities-section__button">
+                    Browse homes
+                  </button>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="partners-section section">
+          <div class="container">
+            <div class="partners-section__title titles">
+              <h2 class="partners-section__main-title main-titles">
+                Partners.
+              </h2>
+              <h3 class="partners-section__sub-title sub-titles">
+                Lorem ipsum dolor sit amet consectetur.
+              </h3>
+            </div>
+            <div class="partners-section__switcher">
+              <ul class="partners-section__tabs" id="partnersTabs">
+                <li>
+                  <a
+                    class="partners-section__tabs-buttons tabs-buttons"
+                    data-container-id="partnersTabs"
+                    href="#"
+                    >Agents</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="partners-section__tabs-buttons tabs-buttons"
+                    data-container-id="partnersTabs"
+                    href="#"
+                    >Financials</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="partners-section__tabs-buttons tabs-buttons"
+                    data-container-id="partnersTabs"
+                    href="#"
+                    >Builders</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="partners-section__slider">
+              <button class="partners-section__slider__button partners-prev">
+                <svg class="slider-arrow" width="50" height="28">
+                  <use href="./images/icons.svg#icon-arrow"></use>
+                </svg>
+              </button>
+              <div
+                class="partners-section__slider__slider-container swiper-partners-container"
+              >
+                <ul class="partners-section__slider__list swiper-wrapper">
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                  <li class="partners-section__slider__items swiper-slide">
+                    <img src="./images/partners-logo.png" alt="partners-logo" />
+                  </li>
+                </ul>
+              </div>
+              <button class="partners-section__slider__button partners-next">
+                <svg class="slider-arrow" width="50" height="28">
+                  <use href="./images/icons.svg#icon-arrow"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-wrapper">
+            <div class="footer-container">
+              <div class="footer__info">
+                <img src="./images/logo.svg" alt="logo" />
+                <p class="footer__info__description">
+                  Lorem ipsum dolor sit amet consectetur. Tortor et dictumst
+                  venenatis tincidunt.
+                </p>
+                <address class="address">
+                  <ul class="address__list">
+                    <li class="address__items">
+                      <a href="https://maps.app.goo.gl/WGetsa7tnZXy5Efg8">
+                        <svg class="location-icon" width="23" height="23">
+                          <use href="./images/icons.svg#icon-location"></use>
+                        </svg>
+                        <span>95 South Park Avenue, USA</span>
+                      </a>
+                    </li>
+                    <li class="address__items">
+                      <a href="tel:+456875369208">
+                        <svg class="phone-icon" width="23" height="23">
+                          <use href="./images/icons.svg#icon-phone"></use>
+                        </svg>
+                        <span>+456875369208</span>
+                      </a>
+                    </li>
+                    <li class="address__items">
+                      <a href="mailto:support@findhouses.com">
+                        <svg class="mail-icon" width="23" height="23">
+                          <use href="./images/icons.svg#icon-mail"></use>
+                        </svg>
+                        <span>support@findhouses.com</span>
+                      </a>
+                    </li>
+                  </ul>
+                </address>
+              </div>
+              <div class="footer__navigation">
+                <h3 class="footer__navigation__title">Navigation</h3>
+                <nav class="footer__navigation__lists">
+                  <ul class="footer__navigation__list">
+                    <li class="footer__navigation__items">
+                      <a href="">Home</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Countries</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Buy</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Sell</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Invest</a>
+                    </li>
+                  </ul>
+                  <ul class="footer__navigation__list">
+                    <li class="footer__navigation__items">
+                      <a href="">Agents Listing</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Advertise</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">About us</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Blog</a>
+                    </li>
+                    <li class="footer__navigation__items">
+                      <a href="">Contact us</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="footer__twitter-feeds">
+                <h3 class="footer__twitter-feeds__title">Twitter feeds</h3>
+                <ul class="footer__twitter-feeds__list">
+                  <li class="footer__twitter-feeds__items">
+                    <svg class="twitter-icon" width="21" height="21">
+                      <use href="./images/icons.svg#icon-twitter"></use>
+                    </svg>
+                    <p class="footer__twitter-feeds__text">
+                      <span class="accent">@Findhouses</span> Lorem ipsum dolor
+                      sit amet consectetur. Tortor et dictumst venenatis
+                      tincidunt
+                    </p>
+                  </li>
+                  <li class="footer__twitter-feeds__items">
+                    <svg class="twitter-icon" width="21" height="21">
+                      <use href="./images/icons.svg#icon-twitter"></use>
+                    </svg>
+                    <p class="footer__twitter-feeds__text">
+                      <span class="accent">@Findhouses</span> Lorem ipsum dolor
+                      sit amet consectetur. Tortor et dictumst venenatis
+                      tincidunt
+                    </p>
+                  </li>
+                  <li class="footer__twitter-feeds__items">
+                    <svg class="twitter-icon" width="21" height="21">
+                      <use href="./images/icons.svg#icon-twitter"></use>
+                    </svg>
+                    <p class="footer__twitter-feeds__text">
+                      <span class="accent">@Findhouses</span> Lorem ipsum dolor
+                      sit amet consectetur. Tortor et dictumst venenatis
+                      tincidunt
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="footer__newsletters">
+                <h3 class="footer__newsletters__title">Newsletters</h3>
+                <p class="footer__newsletters__text">
+                  Sign up for our newsletter to get latest updates and offers.
+                  Subscribe to receive news in your inbox
+                </p>
+
+                <div class="footer__subscription">
+                  <form class="footer__newsletters__form">
+                    <label
+                      class="footer__newsletters__form visually-hidden"
+                      for="email"
+                      >Email</label
+                    >
+                    <input
+                      class="footer__newsletters__form__input"
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      placeholder="E-mail"
+                    />
+                    <button
+                      class="footer__newsletters__form__button"
+                      type="submit"
+                    >
+                      Subscribe
+                    </button>
+                  </form>
+                  <div class="footer__socials">
+                    <a href="#"
+                      ><img src="./images/facebook.svg" alt="facebook" /></a
+                    ><a href="#">
+                      <img src="./images/twitter.svg" alt="twitter" /></a
+                    ><a href="#">
+                      <img src="./images/instagram.svg" alt="instagram"
+                    /></a>
+                    <a href="#">
+                      <img src="./images/youtube.svg" alt="youtube"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer__privat-policy">
+              <p class="footer__privat-policy__text">Copyright ©2024 XIPSON</p>
+              <p class="footer__privat-policy__text">All rights reserved</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module" src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/properties-slider.js"></script>
+    <script src="./js/articles-slider.js"></script>
+    <script src="./js/partners-slider.js"></script>
+  </body>
+</html>
